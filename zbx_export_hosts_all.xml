@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zabbix_export>
+    <version>4.4</version>
+    <date>2023-09-11T17:23:36Z</date>
+    <groups>
+        <group>
+            <name>Zabbix servers</name>
+        </group>
+    </groups>
+    <hosts>
+        <host>
+            <host>ENELCE_ASI_CLIMAAA2</host>
+            <name>ENELCE_ASI_CLIMAAA2</name>
+            <groups>
+                <group>
+                    <name>Zabbix servers</name>
+                </group>
+            </groups>
+            <interfaces>
+                <interface>
+                    <interface_ref>if1</interface_ref>
+                </interface>
+            </interfaces>
+            <applications>
+                <application>
+                    <name>Clima</name>
+                </application>
+            </applications>
+            <items>
+                <item>
+                    <name>Temperatura</name>
+                    <type>HTTP_AGENT</type>
+                    <key>TEMP</key>
+                    <trends>0</trends>
+                    <value_type>FLOAT</value_type>
+                    <units>ºC</units>
+                    <applications>
+                        <application>
+                            <name>Clima</name>
+                        </application>
+                    </applications>
+                    <interface_ref>if1</interface_ref>
+                    <url>http://host.docker.internal:3000/about</url>
+                    <allow_traps>YES</allow_traps>
+                    <triggers>
+                        <trigger>
+                            <expression>{last()}&gt;26</expression>
+                            <name>Temperatura elevada</name>
+                            <priority>HIGH</priority>
+                            <manual_close>YES</manual_close>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>Umidade</name>
+                    <type>HTTP_AGENT</type>
+                    <key>UMID</key>
+                    <trends>0</trends>
+                    <value_type>FLOAT</value_type>
+                    <units>%</units>
+                    <applications>
+                        <application>
+                            <name>Clima</name>
+                        </application>
+                    </applications>
+                    <interface_ref>if1</interface_ref>
+                    <url>http://host.docker.internal:3000/about</url>
+                    <allow_traps>YES</allow_traps>
+                    <triggers>
+                        <trigger>
+                            <expression>{last()}&gt;60</expression>
+                            <name>Umidade Elevada</name>
+                            <priority>AVERAGE</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+            </items>
+            <inventory_mode>DISABLED</inventory_mode>
+        </host>
+        <host>
+            <host>FIOCRUZRJ_RACK PDU A ZONA 1</host>
+            <name>FIOCRUZRJ_RACK PDU A ZONA 1</name>
+            <groups>
+                <group>
+                    <name>Zabbix servers</name>
+                </group>
+            </groups>
+            <interfaces>
+                <interface>
+                    <interface_ref>if1</interface_ref>
+                </interface>
+            </interfaces>
+            <items>
+                <item>
+                    <name>Temperatura</name>
+                    <type>HTTP_AGENT</type>
+                    <key>TEMP</key>
+                    <history>1d</history>
+                    <trends>0</trends>
+                    <value_type>FLOAT</value_type>
+                    <units>ºC</units>
+                    <interface_ref>if1</interface_ref>
+                    <url>http://host.docker.internal:3000/about</url>
+                    <follow_redirects>NO</follow_redirects>
+                    <triggers>
+                        <trigger>
+                            <expression>{last()}&gt;29</expression>
+                            <name>TEMPERATURA MUITO ALTA</name>
+                            <status>DISABLED</status>
+                            <priority>HIGH</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+            </items>
+            <httptests>
+                <httptest>
+                    <name>Web Service Check</name>
+                    <attempts>3</attempts>
+                    <status>DISABLED</status>
+                    <steps>
+                        <step>
+                            <name>About Page Check</name>
+                            <url>http://host.docker.internal:3000/about</url>
+                            <follow_redirects>NO</follow_redirects>
+                            <timeout>3s</timeout>
+                        </step>
+                    </steps>
+                </httptest>
+            </httptests>
+            <inventory_mode>DISABLED</inventory_mode>
+        </host>
+        <host>
+            <host>GCBA_ASI_CLIMAAA1</host>
+            <name>GCBA_ASI_CLIMAAA1</name>
+            <groups>
+                <group>
+                    <name>Zabbix servers</name>
+                </group>
+            </groups>
+            <interfaces>
+                <interface>
+                    <interface_ref>if1</interface_ref>
+                </interface>
+            </interfaces>
+            <applications>
+                <application>
+                    <name>Clima</name>
+                </application>
+                <application>
+                    <name>Status Clima</name>
+                </application>
+            </applications>
+            <items>
+                <item>
+                    <name>STATUS CLIMA 1</name>
+                    <type>SIMPLE</type>
+                    <key>INPUT_02_01</key>
+                    <history>0</history>
+                    <trends>0</trends>
+                    <units>bin</units>
+                    <applications>
+                        <application>
+                            <name>Status Clima</name>
+                        </application>
+                    </applications>
+                    <interface_ref>if1</interface_ref>
+                </item>
+                <item>
+                    <name>Porta Sala Segura</name>
+                    <type>SIMPLE</type>
+                    <key>PORTA_SALA_SEGURA</key>
+                    <history>0</history>
+                    <trends>0</trends>
+                    <units>enum</units>
+                    <interface_ref>if1</interface_ref>
+                </item>
+                <item>
+                    <name>Temperatura</name>
+                    <type>HTTP_AGENT</type>
+                    <key>TEMP</key>
+                    <history>1d</history>
+                    <trends>0</trends>
+                    <value_type>FLOAT</value_type>
+                    <units>ºC</units>
+                    <applications>
+                        <application>
+                            <name>Clima</name>
+                        </application>
+                    </applications>
+                    <interface_ref>if1</interface_ref>
+                    <url>http://host.docker.internal:3000/about</url>
+                    <follow_redirects>NO</follow_redirects>
+                    <allow_traps>YES</allow_traps>
+                    <triggers>
+                        <trigger>
+                            <expression>{last()}&gt;29</expression>
+                            <name>TEMPERATURA MUITO ALTA</name>
+                            <priority>HIGH</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+            </items>
+            <httptests>
+                <httptest>
+                    <name>Web Service Check</name>
+                    <delay>5m</delay>
+                    <attempts>3</attempts>
+                    <status>DISABLED</status>
+                    <steps>
+                        <step>
+                            <name>About Page Check</name>
+                            <url>http://host.docker.internal:3001/about</url>
+                            <follow_redirects>NO</follow_redirects>
+                            <timeout>3s</timeout>
+                        </step>
+                    </steps>
+                </httptest>
+            </httptests>
+            <inventory_mode>DISABLED</inventory_mode>
+        </host>
+        <!-- New Host Added -->
+        <host>
+            <host>Example_Host</host>
+            <name>Example_Host</name>
+            <groups>
+                <group>
+                    <name>Zabbix servers</name>
+                </group>
+            </groups>
+            <interfaces>
+                <interface>
+                    <interface_ref>if1</interface_ref>
+                </interface>
+            </interfaces>
+            <items>
+                <item>
+                    <name>Example Item</name>
+                    <type>HTTP_AGENT</type>
+                    <key>EXAMPLE</key>
+                    <trends>0</trends>
+                    <value_type>TEXT</value_type>
+                    <units>N/A</units>
+                    <interface_ref>if1</interface_ref>
+                    <url>http://host.docker.internal:3000/about</url>
+                    <allow_traps>YES</allow_traps>
+                    <triggers>
+                        <trigger>
+                            <expression>{last()}=1</expression>
+                            <name>Example Trigger</name>
+                            <priority>WARNING</priority>
+                            <manual_close>YES</manual_close>
+                        </trigger>
+                    </triggers>
+                </item>
+            </items>
+            <httptests>
+                <httptest>
+                    <name>Example Web Service Check</name>
+                    <attempts>3</attempts>
+                    <status>ENABLED</status>
+                    <steps>
+                        <step>
+                            <name>Example Page Check</name>
+                            <url>http://host.docker.internal:3000/about</url>
+                            <follow_redirects>NO</follow_redirects>
+                            <timeout>3s</timeout>
+                        </step>
+                    </steps>
+                </httptest>
+            </httptests>
+            <inventory_mode>DISABLED</inventory_mode>
+        </host>
+    </hosts>
+    <triggers>
+        <trigger>
+            <expression>{FIOCRUZRJ_RACK PDU A ZONA 1:web.test.fail[Web Service Check].last()}&gt;=1</expression>
+            <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
+            <recovery_expression>{FIOCRUZRJ_RACK PDU A ZONA 1:web.test.time[Web Service Check,About Page Check,resp].last()}&lt;=3</recovery_expression>
+            <name>Falha de comunicação PDU</name>
+            <priority>WARNING</priority>
+            <type>MULTIPLE</type>
+            <manual_close>YES</manual_close>
+        </trigger>
+        <trigger>
+            <expression>{GCBA_ASI_CLIMAAA1:web.test.fail[Web Service Check].last()}&gt;=1</expression>
+            <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
+            <recovery_expression>{GCBA_ASI_CLIMAAA1:web.test.time[Web Service Check,About Page Check,resp].last()}&lt;=3</recovery_expression>
+            <name>Máquina de Clima com Alta Temperatura</name>
+            <priority>HIGH</priority>
+            <type>MULTIPLE</type>
+            <manual_close>YES</manual_close>
+        </trigger>
+    </triggers>
+</zabbix_export>
